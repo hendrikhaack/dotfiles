@@ -1,0 +1,10 @@
+[user]
+	name = Hendrik Haack
+	email = hendrik@einsinn.de
+[core]
+	editor = code --wait
+	excludesfile = /Users/hendrikhaack/.gitignore-global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
