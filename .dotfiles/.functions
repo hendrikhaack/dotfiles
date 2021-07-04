@@ -1,0 +1,55 @@
+# Create a new directory and enter it
+function mkd() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# Remove host from hostfile
+function removehost() {
+  ssh-keygen -R "$1"
+}
+
+# Git clone
+function clone() {
+  if [ $2 ]; then
+    if [ -d "$2" ]; then
+      echo Folder already exists.
+      return
+    fi
+
+    git clone git@github.com:$1 $2
+    cd $2
+  else
+    if [ -d "$(basename ${1%.git})" ]; then
+      echo Folder already exists.
+      return
+    fi
+
+    git clone git@github.com:$1
+    cd $(basename ${1%.git})
+  fi
+
+  if test -f "./package.json"; then
+    echo "..."
+    echo "Found package.json... installing dependencies"
+    echo "..."
+    npm ci
+  fi
+
+  if test -f "./composer.json"; then
+    echo "..."
+    echo "Found composer.json... installing dependencies"
+    echo "..."
+    composer install
+  fi
+}
+
+# Deployer
+function depp() {
+  if [ $1 ]; then
+    dep deploy --tag=$1 production
+  else
+    getbranch="git branch --show-current"
+    branch=$(eval "$getbranch")
+    dep deploy stage --branch=$branch
+  fi
+}
