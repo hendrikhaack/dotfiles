@@ -1,0 +1,32 @@
+# Directories
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias ll='exa -la --git'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias h='cd ~'
+alias d='cd ~/Developer'
+
+# Git
+alias gb="git branch"
+alias gc="git checkout"
+alias gst="git status"
+alias pull="git pull"
+alias push="git push"
+
+# SSH
+alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
+alias sshconfig='open -a TextEdit ~/.ssh/config'
+alias sshhosts='open -a TextEdit ~/.ssh/known_hosts'
+
+# Development
+alias a='php artisan'
+alias ni='npm i'
+alias nid='npm i -D'
+alias nu="npm uninstall"
+alias nr="npm run"
+alias nd='npm run dev'
+alias nh='npm run hot'
+alias vc='vercel'
+alias phpspec='vendor/bin/phpspec'
+alias phpunit='vendor/bin/phpunit'
